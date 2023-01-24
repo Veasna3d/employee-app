@@ -7,6 +7,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\AdminController;
 
 use Inertia\Inertia;
 
@@ -35,10 +36,11 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    //     return Inertia::render('Dashboard');
+    // })->name('dashboard');
 
+    Route::resource('/index', AdminController::class);
     Route::resource('/employees', EmployeeController::class);
     Route::resource('/departments', DepartmentController::class);
     Route::resource('/countries', CountryController::class);
