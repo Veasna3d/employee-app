@@ -23,7 +23,7 @@
             <div class="max-w-full mx-auto sm:px-6 lg:px-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                    <form @submit.prevent="createDepartment" class="p-4">
+                    <form @submit.prevent="updateDepartment" class="p-4">
                         <div>
                             <InputLabel for="name" value="Name" />
                             <TextInput id="name" v-model="form.name" type="name" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -53,12 +53,20 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import { Inertia } from "@inertiajs/inertia";
 
-const form = useForm({
-    name: ''
+const props = defineProps({
+    department: Object
 })
 
-const createDepartment = () => {
-    form.post(route('departments.store'));
-}
+const form = useForm({
+    name: props.department?.name,
+})
+
+const updateDepartment = () => {
+    Inertia.post(`/department/${props.department.id}`,{
+        _method: "put",
+        name: form.name,
+    });
+};
 </script>

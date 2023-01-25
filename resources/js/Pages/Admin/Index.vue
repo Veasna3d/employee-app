@@ -24,11 +24,11 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                     <div class="p-6 sm:px-10 bg-white border-b border-gray-200">
                         <div class="text-xl font-bold text-green-700">
-                            Movie App
+                            Employee App
                         </div>
 
                         <div class="mt-8 text-2xl">
-                            Movie Database Statistics
+                            Employee Database Statistics
                         </div>
                     </div>
 
@@ -57,7 +57,7 @@
                                     <path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                 </svg>
                                 <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                                    <span class="text-xl font-bold text-blue-500">7</span> Movies in Database
+                                    <span class="text-xl font-bold text-blue-500">7</span> Employees in Database
                                 </div>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                     </path>
                                 </svg>
                                 <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                                    <span class="text-xl font-bold text-blue-500">3</span> Series in Database
+                                    <span class="text-xl font-bold text-blue-500">3</span> Phone in Database
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                                     </path>
                                 </svg>
                                 <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold">
-                                    <span class="text-xl font-bold text-blue-500">4</span> Casts in Database
+                                    <span class="text-xl font-bold text-blue-500">4</span> User in Database
                                 </div>
                             </div>
                         </div>

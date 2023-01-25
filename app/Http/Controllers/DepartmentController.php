@@ -38,6 +38,28 @@ class DepartmentController extends Controller
                 'name' => $request->name,
             ]);
             return Redirect::route('departments.index')->with('message', 'Department created successfully.');
-        
+    }
+
+    public function edit(Department $department)
+    {
+        return Inertia::render('Department/Edit', compact('department'));
+    }
+
+    public function update(Request $request, Department $department)
+    {
+        $request->validate([
+            'name' => 'required|unique:departments,name',
+        ]);
+
+        $department->update([
+            'name' => $request->name
+        ]);
+        return Redirect::route('departments.index')->with('message', 'Department updated successfully.');
+    }
+
+    public function destroy(Department $department)
+    {
+        $department->delete();
+        return Redirect::back()->with('message', 'Action completed.');
     }
 }

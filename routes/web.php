@@ -40,7 +40,7 @@ Route::middleware([
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
 
-    Route::resource('/index', AdminController::class);
+    Route::resource('/home', AdminController::class);
     Route::resource('/employees', EmployeeController::class);
     Route::resource('/departments', DepartmentController::class);
     Route::resource('/countries', CountryController::class);
