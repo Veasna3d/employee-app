@@ -50,9 +50,8 @@ class DepartmentController extends Controller
         $request->validate([
             'name' => 'required|unique:departments,name',
         ]);
-
         $department->update([
-            'name' => $request->name
+            'name' => $request->name,
         ]);
         return Redirect::route('departments.index')->with('message', 'Department updated successfully.');
     }

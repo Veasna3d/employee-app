@@ -13,7 +13,7 @@
                                 d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                             </path>
                         </svg>
-                        Department
+                        Country
                     </a>
                 </li>
             </ol>
@@ -23,12 +23,17 @@
             <div class="max-w-full mx-auto sm:px-6 lg:px-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                    <form @submit.prevent="updateDepartment" class="p-4">
+                    <form @submit.prevent="updateCountry" class="p-4">
+                        <div>
+                            <InputLabel for="country_code" value="Country Code" />
+                            <TextInput id="country_code" v-model="form.country_code" type="country_code" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                autofocus />
+                            <InputError class="mt-2" :message="form.errors.country_code" />
+                        </div>
                         <div>
                             <InputLabel for="name" value="Name" />
-                            <TextInput id="name" v-model="form.name" type="name"
-                                class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                autofocus />
+                            <TextInput id="name" v-model="form.name" type="name" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                 />
                             <InputError class="mt-2" :message="form.errors.name" />
                         </div>
 
@@ -57,16 +62,18 @@ import TextInput from '@/Components/TextInput.vue';
 import { Inertia } from "@inertiajs/inertia";
 
 const props = defineProps({
-    department: Object,
+    country: Object,
 });
 const form = useForm({
-    name: props.department?.name,
+    name: props.country?.name,
+    country_code: props.country?.country_code
 });
-const updateDepartment = () => {
-    Inertia.post(`/departments/${props.department.id}`, {
+const updateCountry = () => {
+    Inertia.post(`/countries/${props.country.id}`, {
 
         _method: "put",
-        name: form.name
+        name: form.name,
+        country_code: form.country_code
     });
 };
 </script>

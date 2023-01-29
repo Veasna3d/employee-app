@@ -1,7 +1,7 @@
 <template>
     <AdminLayout title="Department">
-        <!-- Breadcrumb -->
-        <nav class="flex justify-end px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
+         <!-- Breadcrumb -->
+         <nav class="flex justify-end px-5 py-3 text-gray-700 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-800 dark:border-gray-700"
             aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-3">
                 <li class="inline-flex items-center">
@@ -13,7 +13,7 @@
                                 d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z">
                             </path>
                         </svg>
-                        Department
+                        Country
                     </a>
                 </li>
             </ol>
@@ -23,12 +23,17 @@
             <div class="max-w-full mx-auto sm:px-6 lg:px-6">
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
 
-                    <form @submit.prevent="updateDepartment" class="p-4">
+                    <form @submit.prevent="createCountry" class="p-4">
+                        <div>
+                            <InputLabel for="country_code" value="Country Code" />
+                            <TextInput id="country_code" v-model="form.country_code" type="country_code" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                autofocus />
+                            <InputError class="mt-2" :message="form.errors.country_code" />
+                        </div>
                         <div>
                             <InputLabel for="name" value="Name" />
-                            <TextInput id="name" v-model="form.name" type="name"
-                                class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                autofocus />
+                            <TextInput id="name" v-model="form.name" type="name" class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                 />
                             <InputError class="mt-2" :message="form.errors.name" />
                         </div>
 
@@ -54,19 +59,13 @@ import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Inertia } from "@inertiajs/inertia";
 
-const props = defineProps({
-    department: Object,
-});
 const form = useForm({
-    name: props.department?.name,
-});
-const updateDepartment = () => {
-    Inertia.post(`/departments/${props.department.id}`, {
+    name: '',
+    country_code: ''
+})
 
-        _method: "put",
-        name: form.name
-    });
-};
+const createCountry = () => {
+    form.post(route('countries.store'));
+}
 </script>
