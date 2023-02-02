@@ -12,7 +12,9 @@ use Inertia\Inertia;
 class StateController extends Controller
 {
     public function index(){
-       // $countries = Country::all();
+       // $country = Country::with(['country'])->find();
+       // $states = StateResource::collection(State::with('country')->get());
+       // return Inertia::render('Product/Index', compact('states'));
         $perPage = Requests::input('perPage') ?: 5;
         return Inertia::render('State/Index',[
             'states' => State::query()
@@ -45,27 +47,28 @@ class StateController extends Controller
             return Redirect::route('states.index')->with('message', 'State created successfully.');
     }
 
-    // public function edit(Country $country)
-    // {
-    //     return Inertia::render('Country/Edit', compact('country'));
-    // }
+    public function edit(State $state)
+    {
+        $countries = Country::all();
+        return Inertia::render('State/Edit', compact('state', 'countries'));
+    }
 
-    // public function update(Request $request, Country $country)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|unique:countries,name',
-    //         'country_code' => 'required|unique:countries,country_code',
-    //     ]);
-    //     $country->update([
-    //         'name' => $request->name,
-    //         'country_code' => $request->country_code
-    //     ]);
-    //     return Redirect::route('countries.index')->with('message', 'Country updated successfully.');
-    // }
+    public function update(Request $request, State $state)
+    {
+        $request->validate([
+            'name' => 'required|unique:states,name',
+            'country_id' => 'required',
+        ]);
+        $state->update([
+            'name' => $request->name,
+            'country_id' => $request->country_id
+        ]);
+        return Redirect::route('states.index')->with('message', 'State updated successfully.');
+    }
 
-    // public function destroy(Country $country)
-    // {
-    //     $country->delete();
-    //     return Redirect::back()->with('message', 'Action completed.');
-    // }
+    public function destroy(State $state)
+    {
+        $state->delete();
+        return Redirect::back()->with('message', 'Action completed.');
+    }
 }

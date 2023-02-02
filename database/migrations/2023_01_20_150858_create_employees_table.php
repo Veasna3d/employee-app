@@ -22,7 +22,6 @@ return new class extends Migration
             $table->foreignId('department_id')->constrained();
             $table->foreignId('country_id')->constrained();
             $table->foreignId('state_id')->constrained();
-            $table->foreignId('city_id')->constrained();
             $table->string('zipCode');
             $table->date('birthDate');
             $table->date('hiredDate');

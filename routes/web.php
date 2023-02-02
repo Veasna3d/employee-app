@@ -4,7 +4,6 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\CityController;
 use App\Http\Controllers\StateController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\AdminController;
@@ -42,5 +41,4 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('/departments', DepartmentController::class);
     Route::resource('/countries', CountryController::class);
     Route::resource('/states', StateController::class);
-    Route::resource('/cities', CityController::class);
 });
