@@ -71,7 +71,7 @@ class EmployeeController extends Controller
         $countries = Country::all();
         $states = State::all();
         $departments = Department::all();
-         return Inertia::render('Employee/Edit', compact('countries', 'states', 'departments'));
+         return Inertia::render('Employee/Edit', compact('employee','countries', 'states', 'departments'));
      }
 
      public function update(Request $request, Employee $employee)
